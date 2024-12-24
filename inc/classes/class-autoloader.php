@@ -15,7 +15,7 @@ class Autoloader {
         // load class.
         I18n::get_instance();
         Enqueue_Assets::get_instance();
-        // Admin_Top_Menu::get_instance();
-        Admin_Sub_Menu::get_instance();
+        Admin_Top_Menu::get_instance();
+        // Admin_Sub_Menu::get_instance();
     }
 }

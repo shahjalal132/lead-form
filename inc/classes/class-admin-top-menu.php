@@ -20,19 +20,19 @@ class Admin_Top_Menu {
     }
 
     function add_plugin_action_links( $links ) {
-        $settings_link = '<a href="admin.php?page=menu-slug">' . __( 'Settings', 'lead-form' ) . '</a>';
+        $settings_link = '<a href="admin.php?page=leads">' . __( 'Settings', 'lead-form' ) . '</a>';
         array_unshift( $links, $settings_link );
         return $links;
     }
 
     public function register_admin_top_menu() {
         add_menu_page(
-            'Page Title',
-            'Menu Title',
+            'Leads',
+            'Leads',
             'manage_options',
-            'menu-slug',
+            'leads',
             [ $this, 'menu_callback_html' ],
-            'dashicons-admin-generic',
+            'dashicons-database-view',
             35
         );
     }

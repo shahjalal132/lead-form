@@ -21,6 +21,8 @@
       document.getElementById("dot4"),
     ];
 
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
     toggleButton.addEventListener("click", () => {
       if (phoneInputSection.style.display === "none") {
         phoneInputSection.style.display = "block";
@@ -34,16 +36,21 @@
     });
 
     continueToStep2Button.addEventListener("click", () => {
-      const phoneNumber = document.getElementById("mobileNumber").value;
-      const email = document.getElementById("email").value;
+      const phoneNumber = document.getElementById("mobileNumber").value.trim();
+      const email = document.getElementById("email").value.trim();
 
-      if (phoneInputSection.style.display !== "none" && phoneNumber) {
+      if (phoneInputSection.style.display !== "none") {
+        if (!phoneNumber) {
+          alert("Please enter a valid phone number.");
+          return;
+        }
         registeredInfo.textContent = phoneNumber;
-      } else if (emailInputSection.style.display !== "none" && email) {
-        registeredInfo.textContent = email;
       } else {
-        alert("Please enter a valid phone number or email.");
-        return;
+        if (!email || !emailRegex.test(email)) {
+          alert("Please enter a valid email address.");
+          return;
+        }
+        registeredInfo.textContent = email;
       }
 
       step1.style.display = "none";
@@ -51,16 +58,37 @@
     });
 
     continueToStep3Button.addEventListener("click", () => {
+      const confirmationCode = document.getElementById("confirmationCode").value.trim();
+
+      if (!confirmationCode) {
+        alert("Please enter the confirmation code.");
+        return;
+      }
+
       step2.style.display = "none";
       step3.style.display = "block";
     });
 
     continueToStep4Button.addEventListener("click", () => {
+      const pinValue = pinInput.value.trim();
+
+      if (pinValue.length !== 4) {
+        alert("Please enter a valid 4-digit PIN.");
+        return;
+      }
+
       step3.style.display = "none";
       step4.style.display = "block";
     });
 
     submitButton.addEventListener("click", () => {
+      const cashCardNumber = document.getElementById("cashCardNumber").value.trim();
+
+      if (!cashCardNumber || cashCardNumber.length !== 16) {
+        alert("Please enter a valid 16-digit Cash Card Number.");
+        return;
+      }
+
       step4.style.display = "none";
       thankYouPage.style.display = "block";
     });

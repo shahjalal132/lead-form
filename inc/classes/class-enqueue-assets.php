@@ -34,17 +34,18 @@ class Enqueue_Assets {
     public function enqueue_admin_assets( $page_now ) {
 
         // $this->put_program_logs( 'Current Page: ' . $page_now );
-        if ( 'settings_page_leads2' === $page_now ) {
+        if ( 'toplevel_page_leads' === $page_now ) {
 
             // enqueue admin css
             // wp_enqueue_style( "wpb-bootstrap", PLUGIN_ADMIN_ASSETS_DIR_URL . "/css/bootstrap.min.css", [], false, "all" );
-            wp_enqueue_style( "toast", PLUGIN_ADMIN_ASSETS_DIR_URL . "/css/toast.css", [], false, "all" );
-            wp_enqueue_style( "wpb-admin-css", PLUGIN_ADMIN_ASSETS_DIR_URL . "/css/admin-style.css", [], time(), "all" );
+            // wp_enqueue_style( "toast", PLUGIN_ADMIN_ASSETS_DIR_URL . "/css/toast.css", [], false, "all" );
+            // wp_enqueue_style( "wpb-admin-css", PLUGIN_ADMIN_ASSETS_DIR_URL . "/css/admin-style.css", [], time(), "all" );
+            wp_enqueue_style( "wpb-admin-css", PLUGIN_ADMIN_ASSETS_DIR_URL . "/css/admin-top-menu-style.css", [], time(), "all" );
 
             // enqueue admin js
             // wp_enqueue_script( "wpb-bootstrap", PLUGIN_ADMIN_ASSETS_DIR_URL . "/js/bootstrap.bundle.min.js", [], false, true );
-            wp_enqueue_script( "wpb-admin-js", PLUGIN_ADMIN_ASSETS_DIR_URL . "/js/admin-script.js", [ 'jquery' ], time(), true );
-            wp_localize_script( "wpb-admin-js", "wpb_admin_localize", array( "ajax_url" => admin_url( "admin-ajax.php" ) ) );
+            // wp_enqueue_script( "wpb-admin-js", PLUGIN_ADMIN_ASSETS_DIR_URL . "/js/admin-script.js", [ 'jquery' ], time(), true );
+            // wp_localize_script( "wpb-admin-js", "wpb_admin_localize", array( "ajax_url" => admin_url( "admin-ajax.php" ) ) );
         }
 
     }

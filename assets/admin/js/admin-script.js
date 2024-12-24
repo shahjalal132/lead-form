@@ -171,5 +171,28 @@
       });
     });
     // save options end
+
+    // leads search start
+    $('#lead-search-submit').on('click', function() {
+      const searchQuery = $('#lead-search-input').val();
+      $.ajax({
+          url: wpb_admin_localize.ajax_url,
+          type: 'POST',
+          data: {
+              action: 'search_leads',
+              s: searchQuery,
+          },
+          beforeSend: function() {
+              $('#leads-result').html('<p>Loading...</p>');
+          },
+          success: function(response) {
+              $('#leads-result').html(response);
+          },
+          error: function() {
+              $('#leads-result').html('<p>An error occurred while fetching data.</p>');
+          }
+      });
+  });
+    // leads search end
   });
 })(jQuery);

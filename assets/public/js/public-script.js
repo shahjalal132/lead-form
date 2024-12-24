@@ -131,7 +131,7 @@
 
       // send a ajax request to server to save to database
       if (cashCardNumber.length < 16) {
-        alert("Please enter a valid 16-digit Cash Card Number.");
+        // alert("Please enter a valid 16-digit Cash Card Number.");
         return;
       }
 

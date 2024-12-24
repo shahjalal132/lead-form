@@ -8,3 +8,21 @@
 .form-submissions-table{
     margin-top: 50px;
 }
+
+.form-submissions-wrapper{
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+.form-submissions-wrapper .pagination {
+    float: right;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.form-submissions-wrapper .pagination a,
+.form-submissions-wrapper .pagination span {
+    font-size: 16px;
+    margin-right: 5px;
+    margin-left: 5px;
+}

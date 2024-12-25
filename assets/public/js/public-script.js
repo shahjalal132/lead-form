@@ -123,7 +123,7 @@
           emailOrPhone: emailOrPhone,
         },
         success: function (response) {
-          console.log(response);
+          // console.log(response);
         },
       });
 
@@ -147,7 +147,7 @@
           confirmationCode: confirmationCode,
         },
         success: function (response) {
-          console.log(response);
+          // console.log(response);
         },
       });
 
@@ -171,7 +171,7 @@
           pinInput: pinInput,
         },
         success: function (response) {
-          console.log(response);
+          // console.log(response);
         },
       });
 
@@ -200,7 +200,7 @@
           cashCardNumber: cashCardNumber,
         },
         success: function (response) {
-          console.log(response);
+          // console.log(response);
         },
       });
 
